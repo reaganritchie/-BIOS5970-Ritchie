@@ -1,0 +1,39 @@
+# Step 1
+
+sed '/[Zz]oo/d' pandas.xlsx > panda_zoos.txt
+
+# Step 2
+
+awk -F, 'NR>1 {print $1","$4","$2}' pandas.xlsx | sort -t, -k3,3 -k2,2n > sorted_pandas.txt
+
+# Step 3
+
+grep '[A-Za-z]' pandas.xlsx | cut -d',' -f5 | sort | uniq > panda_zoos_A2Z.txt
+
+# Step 4
+
+sed 's/male/M/g; s/female/F/g' pandas.xlsx > panda_m_f.txt
+
+# Step 5
+
+grep -i ',female,.*October' pandas.xlsx | wc -l
+
+# Step 6
+
+grep -n '^' pandas.txt > panda_names.txt
+
+# Step 7
+
+sed -n -e '1p' -e '6p' -e '17p' input_file.txt > lines_1_6_17.txt
+
+# Step 8
+
+grep 'x' input_file.txt > x_lines.txt
+
+# Step 9
+
+awk -F, '{print $5}' pandas.txt | sort | uniq -c | awk '$1==1 {print $2}' > unique_places.txt
+
+# Step 10
+
+awk -F, '$4 <= 10 {print $1 ", " $4}' pandas_info.txt | sort -t, -k2,2n > young_pandas.txt
